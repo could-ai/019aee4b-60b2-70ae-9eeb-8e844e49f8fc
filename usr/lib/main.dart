@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/admin_setup_screen.dart';
+import 'screens/main_nav_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'متجري الإلكتروني',
       debugShowCheckedModeBanner: false,
-      // Support for Arabic RTL
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -24,15 +24,21 @@ class MyApp extends StatelessWidget {
         Locale('ar', 'AE'), // Arabic
         Locale('en', 'US'), // English
       ],
-      locale: const Locale('ar', 'AE'), // Default to Arabic
+      locale: const Locale('ar', 'AE'),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFFF4747), // AliExpress Red
+          primary: const Color(0xFFFF4747),
+          secondary: const Color(0xFFFFC107), // Amber/Yellow for deals
+        ),
         useMaterial3: true,
-        fontFamily: 'Arial', // Fallback font, ideally use a custom Arabic font
+        fontFamily: 'Arial',
+        scaffoldBackgroundColor: const Color(0xFFF5F5F5), // Light grey background
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const AdminSetupScreen(),
+        '/home': (context) => const MainNavScreen(),
       },
     );
   }

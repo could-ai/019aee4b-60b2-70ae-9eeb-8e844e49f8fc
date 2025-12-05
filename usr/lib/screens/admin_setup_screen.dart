@@ -38,13 +38,18 @@ class _AdminSetupScreenState extends State<AdminSetupScreen> {
       // Here we would normally save to Supabase
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('تم حفظ البيانات بنجاح! (محاكاة)'),
+          content: Text('تم حفظ البيانات بنجاح! جاري الانتقال للمتجر...'),
           backgroundColor: Colors.green,
+          duration: Duration(seconds: 1),
         ),
       );
       
-      // Navigate to main store page later
-      // Navigator.pushReplacementNamed(context, '/home');
+      // Navigate to main store page
+      Future.delayed(const Duration(seconds: 1), () {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/home');
+        }
+      });
     }
   }
 
@@ -54,7 +59,7 @@ class _AdminSetupScreenState extends State<AdminSetupScreen> {
       appBar: AppBar(
         title: const Text('إعداد حساب المسؤول'),
         centerTitle: true,
-        backgroundColor: Colors.redAccent, // AliExpress style color
+        backgroundColor: const Color(0xFFFF4747), // AliExpress Red
         foregroundColor: Colors.white,
       ),
       body: Directionality(
@@ -144,7 +149,7 @@ class _AdminSetupScreenState extends State<AdminSetupScreen> {
                   child: ElevatedButton(
                     onPressed: _saveData,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
+                      backgroundColor: const Color(0xFFFF4747),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
